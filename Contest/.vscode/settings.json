@@ -1,0 +1,10 @@
+{
+    "files.associations": {
+        "*.embeddedhtml": "html",
+        "iostream": "cpp",
+        "ostream": "cpp",
+        "vector": "cpp"
+    },
+    "cmake.sourceDirectory": "/home/hasan/Documents/DSA-codes/Contest/files",
+    "C_Cpp.errorSquiggles": "enabled"
+}
