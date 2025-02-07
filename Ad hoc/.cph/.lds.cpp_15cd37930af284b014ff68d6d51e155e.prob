@@ -1,0 +1,1 @@
+{"name":"Local: lds","url":"/home/hasan/Documents/DSA-codes/Ad hoc/lds.cpp","tests":[{"id":1736484627347,"input":"10\n35\n12638025\n59\n13682601\n535\n184815\n555\n5\n33\n3535","output":""}],"interactive":false,"memoryLimit":1024,"timeLimit":3000,"srcPath":"/home/hasan/Documents/DSA-codes/Ad hoc/lds.cpp","group":"local","local":true}

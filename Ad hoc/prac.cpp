@@ -20,27 +20,43 @@ using namespace std;
 #define YES cout << "YES\n"
 #define NO cout << "NO\n"
 
-int func ( int n){
-    int c =0 ;
-    do
-    {
-        n = n-2;
-        c = c+n -2;
-    } while (n>=0);
-    return c;
-}
 
 void solve(int tc)
 {
-    cout<<func(9)<<endl;
+      int n, k;
+      cin>>n>>k;
+      string s;
+      cin>>s;
+      
+      long long res = 1, mn = LONG_MAX, mx=1 ,taken =0 ;
+      
+      for(int i=0 ; i<k; i++){
+        if(s[i]=='0'){
+            res = 1;
+            taken=0;
+            continue;
+        }
+        taken++;
+        res *= (s[i]-'0');
+        if(taken <= n){
+            //cout<<res<<" ";
+            mn = min(mn, res);
+            mx = max(mx, res);
+            taken --;
+            res /= (s[i-n+1]-'0');
+        }
+      }
+      if(mn == LONG_MAX)mn = 1;
+      cout << "case:" << tc << " " << endl;
+      cout<<mx<<endl<<mn<<endl;
+      //cout<<endl;
 }
     
-
 int main()
 {
-    fastio;
+    //fastio;
     int t = 1;
-    //cin >> t;
+    cin >> t;
     for (int i = 1; i <= t; i++)
         solve(i);
 }

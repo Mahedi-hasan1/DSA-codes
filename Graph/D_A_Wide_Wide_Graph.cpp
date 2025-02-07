@@ -25,6 +25,7 @@ using namespace __gnu_pbds;
 #define NO cout << "NO\n"
 
 typedef tree<int, null_type, less_equal<int>, rb_tree_tag, tree_order_statistics_node_update> pbds;
+
 const ll mx =   1e5+5;
 vector<vector<int>>v(mx);
 bool vis[mx+5];

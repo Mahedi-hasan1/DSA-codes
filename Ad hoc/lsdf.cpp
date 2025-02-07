@@ -20,45 +20,23 @@ using namespace std;
 #define YES cout << "YES\n"
 #define NO cout << "NO\n"
 
-bool pos(vector<ll>&v, ll pos , ll m, ll k){
-    ll tmp = m, sum =0, n = v.size();
-
-    for(int i = pos ; i<n; i++){
-        if(i==n-1){
-            if(v[i]<tmp)sum += 1e15;
-            continue;
-        }
-        if(v[i]>=tmp)break;
-        sum += max(0ll, tmp-v[i]);
-        tmp -= 1;
-    }
-    return (sum<=k) ;
-}
 
 void solve(int tc)
 {
-    ll n,k;
-    cin>>n>>k;
-    vector<ll>v(n);
+    int n, x;
+    cin>>n>>x;
+    vector<int>v(n), dp(n);
+    
     for(int i=0 ; i<n; i++)cin>>v[i];
-
-    ll mx = 0 ;
+    for(int i=0 ; i<n; i++)dp[i]=v[i];
     for(int i=0 ; i<n; i++){
-
-        ll l = v[i] -1 , r = v[i] + k +5;
-
-        while( r - l > 1){
-            ll m = (r+l)/2;
-
-            if(pos(v, i , m, k)){
-                l = m;
-                mx = max(mx,m);
-            }
-            else r = m;
+        if(i-x-1>0){
+            dp[i]+= dp[i-x-1];
         }
+        dp[i] = max(dp[i], dp[i-1]);
     }
+    cout<<dp[n-1]<<endl;
 
-    cout<<mx<<endl;
 }
     
 
@@ -66,7 +44,7 @@ int main()
 {
     fastio;
     int t = 1;
-    cin >> t;
+    //in >> t;
     for (int i = 1; i <= t; i++)
         solve(i);
 }

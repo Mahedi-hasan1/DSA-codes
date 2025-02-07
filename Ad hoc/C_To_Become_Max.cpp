@@ -20,45 +20,45 @@ using namespace std;
 #define YES cout << "YES\n"
 #define NO cout << "NO\n"
 
-bool pos(vector<ll>&v, ll pos , ll m, ll k){
-    ll tmp = m, sum =0, n = v.size();
+bool pos(vector<ll>&v, ll m , ll k, ll i, ll n){
+    ll tmp = m, mov =k;
 
-    for(int i = pos ; i<n; i++){
-        if(i==n-1){
-            if(v[i]<tmp)sum += 1e15;
-            continue;
-        }
-        if(v[i]>=tmp)break;
-        sum += max(0ll, tmp-v[i]);
-        tmp -= 1;
+    for( ; i<n; i++){
+        if(v[i]>=tmp)return true;
+        if(i==n-1 || (tmp-v[i])>mov) return false;
+        
+        mov -= (tmp-v[i]);
+        tmp--;
     }
-    return (sum<=k) ;
+    return true;
+
 }
 
 void solve(int tc)
 {
-    ll n,k;
+    ll n, k;
     cin>>n>>k;
     vector<ll>v(n);
-    for(int i=0 ; i<n; i++)cin>>v[i];
-
-    ll mx = 0 ;
     for(int i=0 ; i<n; i++){
-
-        ll l = v[i] -1 , r = v[i] + k +5;
-
-        while( r - l > 1){
-            ll m = (r+l)/2;
-
-            if(pos(v, i , m, k)){
-                l = m;
-                mx = max(mx,m);
-            }
-            else r = m;
-        }
+        cin>>v[i];
     }
 
-    cout<<mx<<endl;
+    ll ans = v[0] ;
+
+    for(int i=0 ;i<n; i++){
+        ll l = v[i]-1 , r = v[i] + k ;
+
+        while(r - l > 1){
+           ll m = (l+r)/2; 
+           if(pos(v, m,k, i, n)){
+              l = m;
+              ans = max(m, ans);
+           }
+           else r = m;
+        }
+
+    }  
+    cout<<ans<<endl;
 }
     
 
